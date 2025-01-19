@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OffreController;
 use App\Http\Controllers\CvController;
+use App\Http\Controllers\CandidatureController;
+
 use App\Http\Controllers\LettreMotivationController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AuthController;
@@ -44,4 +46,8 @@ Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-    
+
+Route::middleware([CheckRole::class.':candidat'])->group(function () {
+    Route::get('offres/{offre}/postuler', [CandidatureController::class, 'create'])->name('candidatures.create');
+    Route::post('offres/{offre}/postuler', [CandidatureController::class, 'store'])->name('candidatures.store');
+});

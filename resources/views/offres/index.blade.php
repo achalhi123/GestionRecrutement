@@ -35,8 +35,9 @@
                 </div>
                 @elseif(auth()->user()->isCandidat())
                 <div class="d-flex justify-content-end">
-                    <a href="{{ route('offres.show', $offre->id) }}" class="btn btn-primary btn-sm">Voir tout</a>
-                  
+                    <a href="{{ route('offres.show', $offre->id) }}" class="btn btn-primary ms-2">Voir tout</a>
+                    <a href="{{ route('candidatures.create', $offre->id) }}" class="btn btn-primary ms-2">Postuler</a>
+
                 </div>
                 @endif
             </li>
