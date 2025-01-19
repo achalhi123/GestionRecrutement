@@ -5,7 +5,9 @@
 @section('content')
 <div class="container">
     <h1 class="mt-4">Mes CVs</h1>
+    @if (auth()->user()->isCandidat() )
     <a href="{{ route('cvs.create') }}" class="btn btn-success mb-3">Créer un CV</a>
+    @endif
     <ul class="list-group">
         @foreach ($cvs as $cv)
             <li class="list-group-item">

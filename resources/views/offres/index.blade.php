@@ -5,11 +5,18 @@
 @section('content')
 <div class="container">
     <h1 class="mt-4">Liste des Offres: </h1>
+    @if (!auth()->guest())
+
     @if (auth()->user()->isRecruteur() )
 
     <a href="{{ route('offres.create') }}" class="btn btn-success mb-3">Créer une Offre</a>
    
     @endif 
+    @endif 
+
+    @if ($offres->isEmpty())
+        <p>Aucune offre disponible.</p>
+    @else
     <ul class="list-group">
         @foreach ($offres as $offre)
             <li class="list-group-item">
@@ -22,6 +29,8 @@
                 <p>
                     {!! nl2br(e(Str::limit($offre->description, 100))) !!}
                 </p>
+                
+                @if (!auth()->guest())
                 @if (auth()->user()->isRecruteur() )
 
                 <div class="d-flex justify-content-end">
@@ -40,8 +49,10 @@
 
                 </div>
                 @endif
+                @endif
             </li>
         @endforeach
     </ul>
+    @endif
 </div>
 @endsection

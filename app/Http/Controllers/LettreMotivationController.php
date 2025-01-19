@@ -11,7 +11,13 @@ class LettreMotivationController extends Controller
     // Liste des lettres
     public function index()
     {
-        $lettres = LettreMotivation::with('user')->get(); // Charge les lettres avec leurs utilisateurs
+        //$lettres = LettreMotivation::with('user')->get(); // Charge les lettres avec leurs utilisateurs
+        $lettres = auth()->user()->lettresMotivation()->latest()->get();    
+
+        if(auth()->user()->role==="recruteur"){
+            return redirect()->route('home');
+        }   
+        
         return view('lettres.index', compact('lettres'));
     }
     

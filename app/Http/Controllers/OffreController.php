@@ -11,10 +11,22 @@ class OffreController extends Controller
     // Liste des offres
     public function index()
     {
-        $offres = Offre::with('user')->get(); // Charge les offres avec leurs utilisateurs
+        if(Auth::check()){
+        if (auth()->user()->isRecruteur()) {
+            // Récupérer uniquement les offres créées par le recruteur connecté
+            $offres = auth()->user()->offres()->latest()->get();
+        }
+        else {
+            // Récupérer toutes les offres
+            $offres = Offre::with('user')->latest()->get();
+        }
         return view('offres.index', compact('offres'));
     }
-    
+    else {
+        $offres = Offre::get();
+        return view('offres.index', compact('offres'));
+    }
+}
     // Formulaire de création d'une offre
     public function create()
     {

@@ -26,5 +26,9 @@ class Cv extends Model
     {
         return $this->belongsToMany(Offre::class, 'offre_cv');
     }
+    public function candidatures()
+    {
+        return $this->hasMany(Candidature::class);
+    }
     
 }

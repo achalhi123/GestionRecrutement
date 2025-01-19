@@ -11,7 +11,11 @@ class CvController extends Controller
     // Liste des CVs
     public function index()
     {
+
         $cvs = Cv::where('user_id', Auth::id())->get();
+        if(auth()->user()->role==="recruteur"){
+            return redirect()->route('home');
+        }  
         return view('cvs.index', ['cvs' => $cvs]);
     }
 

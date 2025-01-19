@@ -5,7 +5,9 @@
 @section('content')
 <div class="container">
     <h1 class="mt-4">Mes Lettres de Motivation</h1>
+    @if (auth()->user()->isCandidat() )
     <a href="{{ route('lettres.create') }}" class="btn btn-success mb-3">Rédiger une Lettre</a>
+    @endif
     <ul class="list-group">
         @foreach ($lettres as $lettre)
             <li class="list-group-item">

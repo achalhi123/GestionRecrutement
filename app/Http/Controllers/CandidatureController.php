@@ -35,4 +35,21 @@ class CandidatureController extends Controller
 
         return redirect()->route('offres.index')->with('success', 'Votre candidature a été envoyée.');
     }
+
+    public function mesCandidatures()
+    {
+        // Récupère les candidatures du candidat connecté
+        $candidatures = auth()->user()->candidatures()->with('offre')->get();
+        //dd(auth()->user());
+    
+        return view('candidatures.mesCandidatures', compact('candidatures'));
+    }
+
+    public function candidaturesPourMesOffres()
+{
+    // Récupérer les offres créées par le recruteur connecté
+    $offres = auth()->user()->offres()->with('candidatures.user', 'candidatures.cv', 'candidatures.lettreMotivation')->get();
+
+    return view('candidatures.offres', compact('offres'));
+}
 }

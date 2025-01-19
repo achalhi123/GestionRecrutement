@@ -31,5 +31,9 @@ class LettreMotivation extends Model
     {
         return $this->belongsToMany(Offre::class, 'offre_lettre_motivation');
     }
+    public function candidatures()
+    {
+        return $this->hasMany(Candidature::class);
+    }
     
 }

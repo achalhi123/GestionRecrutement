@@ -27,11 +27,15 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
+        <a href="{{ route('home') }}" class="navbar-brand">Accueil</a>
+
             <a class="navbar-brand" href="{{ url('/') }}">Gestion Recrutement</a>
             <ul class="navbar-nav ml-auto">
                 @guest
                     <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Connexion</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Inscription</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('offres.index') }}">Liste Offres</a></li>
+
                 @else
                     <li class="nav-item"><a class="nav-link" href="#">{{ Auth::user()->name }}</a></li>
                     <li class="nav-item">
@@ -40,6 +44,7 @@
                             <button class="btn btn-link nav-link">Déconnexion</button>
                         </form>
                     </li>
+
                 @endguest
             </ul>
         </div>
@@ -51,7 +56,7 @@
     </div>
 
     <!-- Footer -->
-    <footer class="py-3 my-4">Projet Laravel Gestion Recrutement . Tous droits réservés à Abdeljalil Achalhi. |
+    <footer class="py-3 my-4">Projet Laravel Gestion Recrutement . Tous droits réservés à Abdeljalil. |
     <a href="#" class="text-decoration-none text-muted">Contact</a> |
     <a href="#" class="text-decoration-none text-muted">À propos</a>
 </footer>

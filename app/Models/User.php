@@ -71,11 +71,17 @@ class User extends Authenticatable
     {
         return $this->hasMany(Cv::class);
     }
-        //un user à 1-n offres (candidat et receruteur) 
+        //un user à 1-n offres ( receruteur) 
 
     public function offres()
     {
         return $this->hasMany(Offre::class);
+    }
+
+    // Un candidat a plusieurs candidatures
+    public function candidatures()
+    {
+        return $this->hasMany(Candidature::class);
     }
     
 }

@@ -51,3 +51,10 @@ Route::middleware([CheckRole::class.':candidat'])->group(function () {
     Route::get('offres/{offre}/postuler', [CandidatureController::class, 'create'])->name('candidatures.create');
     Route::post('offres/{offre}/postuler', [CandidatureController::class, 'store'])->name('candidatures.store');
 });
+Route::middleware([CheckRole::class.':candidat'])->group(function () {
+    Route::get('mes-candidatures', [CandidatureController::class, 'mesCandidatures'])->name('candidatures.mes');
+});
+
+Route::middleware([CheckRole::class.':recruteur'])->group(function () {
+    Route::get('mes-offres/candidatures', [CandidatureController::class, 'candidaturesPourMesOffres'])->name('candidatures.offres');
+});

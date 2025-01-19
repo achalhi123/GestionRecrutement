@@ -23,17 +23,24 @@
         <div class="col-md-3">
             <a href="{{ route('offres.index') }}" class="btn btn-success btn-block w-100">Voir les Offres</a>
         </div>
+        <div class="col-md-3">
+                <a href="{{ route('candidatures.mes') }}" class="btn btn-info btn-block w-100">Mes Candidatures</a>
+            </div>
     @endif
     @if (auth()->user()->isRecruteur() )
         <div class="col-md-3">
             <a href="{{ route('offres.index') }}" class="btn btn-success btn-block w-100">Gérer les Offres</a>
         </div>
+        
         <div class="col-md-3">
+                <a href="{{ route('candidatures.offres') }}" class="btn btn-warning btn-block w-100">Candidatures Reçues</a>
+        </div>
+        <!-- <div class="col-md-3">
             <a href="{{ route('cvs.index') }}" class="btn btn-primary btn-block w-100">Voir les CVs</a>
         </div>
         <div class="col-md-3">
             <a href="{{ route('lettres.index') }}" class="btn btn-secondary btn-block w-100">Voir les Lettres de Motivation</a>
-        </div>
+        </div> -->
     @endif
 
     </div>
@@ -86,3 +93,6 @@
     </div>
 </footer>
 @endsection
+
+
+
